@@ -1,0 +1,36 @@
+{% extends "estudiantes/base.html" %}
+
+{% block titulo %}Lista de Estudiantes{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>👨‍🎓 Lista de Estudiantes</h1>
+
+    <a href="{% url 'registro_estudiante' %}" class="btn btn-success" style="margin-bottom:20px; display:inline-block;">
+        + Registrar nuevo estudiante
+    </a>
+
+    {% if estudiantes %}
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for estudiante in estudiantes %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ estudiante.nombre }}</td>
+                    <td>{{ estudiante.edad }} años</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay estudiantes registrados aún.</p>
+    {% endif %}
+</div>
+{% endblock %}
